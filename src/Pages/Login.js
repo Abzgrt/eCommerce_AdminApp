@@ -24,7 +24,7 @@ const Login = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      console.log(dispatch(login(values)));
+      dispatch(login(values));
       alert(JSON.stringify(values, null, 2));
 
     },
@@ -62,7 +62,7 @@ const Login = () => {
             val={formik.values.email}
             onChng={formik.handleChange("email")}
           />
-          <div className="error mt-2">
+          <div className="errors mt-2">
             {formik.touched.email && formik.errors.email ? (
               <div>{formik.errors.email}</div>
             ) : null}
@@ -75,7 +75,7 @@ const Login = () => {
             val={formik.values.password}
             onChng={formik.handleChange("password")}
           />
-          <div class="error mt-2">
+          <div className="errors mt-2">
             {formik.touched.password && formik.errors.password ? (
               <div>{formik.errors.password}</div>
             ) : null}

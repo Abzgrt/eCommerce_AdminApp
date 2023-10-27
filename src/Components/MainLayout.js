@@ -31,8 +31,8 @@ const MainLayout = () => {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className="text-white fs-5 text-center py-3 mb-0">
-            <span className="sm-logo">DC</span>
-            <span className="lg-logo">Dev Corner</span>
+            <span className="sm-logo">Abdisha</span>
+            <span className="lg-logo">MERN DEV</span>
           </h2>
         </div>
         <Menu
@@ -40,7 +40,7 @@ const MainLayout = () => {
           mode="inline"
           defaultSelectedKeys={[""]}
           onClick={({ key }) => {
-            if (key == "signout") {
+            if (key === "signout") {
             } else {
               navigate(key);
             }
@@ -188,8 +188,9 @@ const MainLayout = () => {
                 <img
                   width={32}
                   height={32}
-                  src="https://stroyka-admin.html.themeforest.scompiler.ru/variants/ltr/images/customers/customer-4-64x64.jpg"
-                  alt=""
+                  src="images/A.jpeg"
+                  alt="Admin"
+                  
                 />
               </div>
               <div
@@ -227,8 +228,8 @@ const MainLayout = () => {
         <Content
           style={{
             margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
+            padding: "24px",
+            minHeight: "280px",
             background: colorBgContainer,
           }}
         >

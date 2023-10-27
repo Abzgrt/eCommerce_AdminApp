@@ -30,12 +30,13 @@ const Columns = [
      
     
     const customerState = useSelector((state) => state.customer.customers);
+    console.log(customerState)
     const data1 = [];
     for(let i = 0;  i<customerState.length; i++){
       if(customerState[i].role !== "admin") {
         data1.push({
           key: i + 1 ,
-          name: customerState[i].firstName + " " + customerState[i].lastName,
+          name: customerState[i].firstname + " " + customerState[i].lastname,
           email: customerState[i].email,
           phone: customerState[i].phone,
         });

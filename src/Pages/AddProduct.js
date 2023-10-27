@@ -41,7 +41,7 @@ const Addproduct = () => {
   }, []);
 
   const brandState = useSelector((state) => state.brand.brands);
-  const prodCatState = useSelector((state) => state.prodCategory.prodCategories);
+  const prodCatState = useSelector((state) => state?.prodCategory?.prodCategories);
   const colorState = useSelector((state) => state.color.colors);
   const imgState = useSelector((state) => state.upload.images);
   const newProduct = useSelector((state) => state.product);
