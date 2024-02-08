@@ -20,7 +20,7 @@ export const createBlog = createAsyncThunk(
   }
 );
 
-export const getBlog = createAsyncThunk(
+export const getSingleBlog = createAsyncThunk(
   "blog/get-blog",
   async (id, thunkAPI) => {
     try {
@@ -96,19 +96,19 @@ export const blogSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
       })
-      .addCase(getBlog.pending, (state) => {
+      .addCase(getSingleBlog.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getBlog.fulfilled, (state, action) => {
+      .addCase(getSingleBlog.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.blogName = action.payload.title;
-        state.blogDesc = action.payload.description;
-        state.blogCategory = action.payload.category;
-        state.blogImages = action.payload.images;
+        state.singleBlog = action.payload;
+        // state.blogDesc = action.payload.description;
+        // state.blogCategory = action.payload.category;
+        // state.blogImages = action.payload.images;
       })
-      .addCase(getBlog.rejected, (state, action) => {
+      .addCase(getSingleBlog.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

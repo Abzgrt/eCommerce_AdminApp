@@ -22,19 +22,10 @@ const Columns = [
     dataIndex: "status",
   }
 ];
-  const data1 = [];
-  for(let i = 0; i < 46; i++){
-    data1.push({
-      key: i,
-      name: `Abdisha King ${i}`,
-      product: 25,
-      status: `Arat Kilo no ${i}`
-    });
-  };
 const Dashboard = () => {
     const dispatch = useDispatch();
    
-    const monthlyDataState = useSelector((state) => state.auth.getMonthlyOrders);
+    const monthlyDataState = useSelector((state) => state.auth.monthlyOrder);
     const [monthlyData, setMonthlyData] = useState([]);
     useEffect(() =>{
       dispatch(getMonthlyData());
@@ -45,72 +36,74 @@ const Dashboard = () => {
       let data = [];
       for(let i = 0; i < monthlyDataState?.length; i++){
         const element = monthlyDataState[i];
-        data.push({type: monthNames[element?._id?.month], income: element?.count  });
+        data.push({type: monthNames[element?._id?.month], sales: element?.count  });
         setMonthlyData(data);
       }
     }, [monthlyDataState])
-    // const data = [
-    //   {
-    //     type: 'Jan',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Feb',
-    //     sales: 52,
-    //   },
-    //   {
-    //     type: 'Mar',
-    //     sales: 61,
-    //   },
-    //   {
-    //     type: 'Apr',
-    //     sales: 145,
-    //   },
-    //   {
-    //     type: 'May',
-    //     sales: 48,
-    //   },
-    //   {
-    //     type: 'Jun',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'July',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Aug',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Sep',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Oct',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Nov',
-    //     sales: 38,
-    //   },
-    //   {
-    //     type: 'Dec',
-    //     sales: 38,
-    //   },
-    // ];
+    const data = [
+      // {
+      //   type: 'Jan',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Feb',
+      //   sales: 52,
+      // },
+      // {
+      //   type: 'Mar',
+      //   sales: 61,
+      // },
+      // {
+      //   type: 'Apr',
+      //   sales: 145,
+      // },
+      // {
+      //   type: 'May',
+      //   sales: 48,
+      // },
+      // {
+      //   type: 'Jun',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'July',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Aug',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Sep',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Oct',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Nov',
+      //   sales: 38,
+      // },
+      // {
+      //   type: 'Dec',
+      //   sales: 38,
+      // },
+    ];
     const config = {
       data: monthlyData,
       xField: 'type',
-      yField: 'income',
+      yField: 'sales',
       color: ({type}) =>{
         return "#ffd333"
       },
-      label: {
-        position: 'middle',
-        style: {
-          fill: 'white',
-          opacity: 1,
+      yAxis: {
+        label: {
+          position: 'left',
+          style: {
+            fill: 'white',
+            opacity: 1,
+          },
         },
       },
       xAxis: {
@@ -166,7 +159,7 @@ const Dashboard = () => {
       <div className="mt-4">
         <h3 className="mb-5"> Income Statics</h3>
         <div>
-          <Column {...config} />
+          <Column {...config} colspan={1}/>
         </div>
       </div>
       <div className="mt-4">
@@ -174,7 +167,7 @@ const Dashboard = () => {
         <div>
           <Table
                 columns={Columns}
-                dataSource={data1}/>
+                dataSource={data}/>
         </div>
       </div>
     </div>

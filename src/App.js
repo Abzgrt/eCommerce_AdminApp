@@ -24,6 +24,7 @@ import AddCoupon from "./Pages/AddCoupon";
 import CouponList from "./Pages/CouponList";
 import ViewEnq from "./Pages/ViewEnq";
 import ViewOrder from "./Pages/ViewOrder";
+import ViewBlog from "./Pages/ViewBlog"
 function App() {
   return (
     <Router>
@@ -35,7 +36,8 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="enquiries" element={<Enquiries />} />
           <Route path="blog" element={<AddBlog />} />
-          <Route path="blog/:id" element={<AddBlog />} />
+          <Route path="blog/add/:id" element={<AddBlog />} />
+          <Route path="blog/:id" element={<ViewBlog />} />
           <Route path="blog-list" element={<BlogList />} />
           <Route path="blog-category" element={<AddBlogCat />} />
           <Route path="blog-category/:id" element={<AddBlogCat />} />

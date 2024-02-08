@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { getOrders } from "../Features/Auth/authSlice";
+import { getAllOrders } from "../Features/Auth/authSlice";
 const columns = [
   {
     title: "SNo",
@@ -36,21 +36,21 @@ const columns = [
 const Orders = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getAllOrders());
   }, []);
-  const orderState = useSelector((state) => state.auth.orders);
+  const orderState = useSelector((state) => state?.auth?.usersOrders);
 
   const data1 = [];
-  for (let i = 0; i < orderState.length; i++) {
+  for (let i = 0; i < orderState?.length; i++) {
     data1.push({
       key: i + 1,
-      name: orderState[i].orderby.firstname,
+      name: orderState[i].user.firstname +" "+ orderState[i].user.lastname,
       product: (
-        <Link to={`/admin/order/${orderState[i].orderby._id}`}>
-          View Orders
+        <Link to={`/admin/order/${orderState[i].user._id}`}>
+          View Order
         </Link>
       ),
-      amount: orderState[i].paymentIntent.amount,
+      amount: orderState[i].totalprice,
       date: new Date(orderState[i].createdAt).toLocaleString(),
       action: (
         <>

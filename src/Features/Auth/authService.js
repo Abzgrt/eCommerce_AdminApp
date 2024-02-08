@@ -13,13 +13,12 @@ import {config} from "../../Utils/axiosConfig";
 
 const getOrders = async () => {
   const response = await axios.get(`${base_url}user/getallorders`, 
-  
   config
   );
 
   return response.data;
 };
-const getOrder = async (id) => {
+const getUserOrderById = async (id) => {
   const response = await axios.post(
     `${base_url}user/getorderbyuserid/${id}`,
     " ",
@@ -37,7 +36,7 @@ const getMonthlyOrders = async () => {
 const authService = {
   login,
   getOrders,
-  getOrder,
+  getUserOrderById,
   getMonthlyOrders
 };
 export default authService;

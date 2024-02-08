@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import {
   createBlog,
-  getBlog,
+  getSingleBlog,
   resetState,
   updateBlog,
 } from "../Features/Blog/blogSlice";
@@ -26,25 +26,24 @@ const Addblog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const getBlogId = location.pathname.split("/")[3];
+  const getBlogId = location.pathname.split("/")[4];
   const imgState = useSelector((state) => state.upload.images);
   
   const blogCatState = useSelector((state) => state.blogCategory.blogCategories);
   const blogState = useSelector((state) => state.blog);
+  const singleBlogState = useSelector((state) => state.blog.singleBlog);
+  // const {title, description, images } = singleBlogState
   const {
     isSuccess,
     isError,
     isLoading,
     createdBlog,
-    blogName,
-    blogDesc,
-    blogCategory,
     blogImages,
     updatedBlog,
   } = blogState;
   useEffect(() => {
     if (getBlogId !== undefined) {
-      dispatch(getBlog(getBlogId));
+      dispatch(getSingleBlog(getBlogId));
       img.push(blogImages);
     } else {
       dispatch(resetState());
@@ -84,10 +83,10 @@ const Addblog = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: blogName || "",
-      description: blogDesc || "",
-      category: blogCategory || "",
-      images: "",
+      title: singleBlogState?.title || "",
+      description: singleBlogState?.description || "",
+      category: singleBlogState?.category || "",
+      images: singleBlogState?.images[0].url || "",
     },
     validationSchema: schema,
     onSubmit: (values) => {

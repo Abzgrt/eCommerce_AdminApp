@@ -21,6 +21,10 @@ const columns = [
     dataIndex: "category",
   },
   {
+    title: "Blog",
+    dataIndex: "blog",
+  },
+  {
     title: "Action",
     dataIndex: "action",
   },
@@ -49,11 +53,15 @@ const Bloglist = () => {
       key: i + 1,
       name: getBlogState[i].title,
       category: getBlogState[i].category,
-
+      blog: (
+        <Link to={`/admin/blog/${getBlogState[i]?._id}`}>
+          View blog
+        </Link>
+      ),
       action: (
         <>
           <Link
-            to={`/admin/blog/${getBlogState[i].id}`}
+            to={`/admin/blog/add/${getBlogState[i]._id}`}
             className=" fs-3 text-danger"
           >
             <BiEdit />

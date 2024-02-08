@@ -15,7 +15,6 @@ const ViewEnq = () => {
   const getEnqId = location.pathname.split("/")[3];
   const enqState = useSelector((state) => state.enquiry);
   const { enqName, enqPhone, enqEmail, enqComment, enqStatus } = enqState;
- console.log(location)
   useEffect(() => {
     dispatch(getEnquiry(getEnqId));
   }, [getEnqId]);
@@ -23,7 +22,6 @@ const ViewEnq = () => {
     navigate(-1);
   };
   const setEnquiryStatus = (e, i) => {
-    console.log(e, i);
     const data = { id: i, enqData: e };
     dispatch(updateEnquiry(data));
     dispatch(resetState());
