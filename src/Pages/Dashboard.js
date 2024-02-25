@@ -27,71 +27,73 @@ const Dashboard = () => {
    
     const monthlyDataState = useSelector((state) => state.auth.monthlyOrder);
     const [monthlyData, setMonthlyData] = useState([]);
-    useEffect(() =>{
-      dispatch(getMonthlyData());
-    }, []);
-    useEffect(() => {
-      let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-      let data = [];
-      for(let i = 0; i < monthlyDataState?.length; i++){
-        const element = monthlyDataState[i];
-        data.push({type: monthNames[element?._id?.month], sales: element?.count  });
-        setMonthlyData(data);
-      }
-    }, [monthlyDataState])
+useEffect(() => {
+  dispatch(getMonthlyData());
+}, []);
+
+useEffect(() => {
+  let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  let data = [];
+  for(let i = 0; i < monthlyDataState?.length; i++){
+    const element = monthlyDataState[i];
+    data.push({type: monthNames[element?._id?.month], sales: element?.count});
+  }
+  setMonthlyData(data); // Move this line outside the loop
+}, [monthlyDataState]);
     const data = [
-      // {
-      //   type: 'Jan',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Feb',
-      //   sales: 52,
-      // },
-      // {
-      //   type: 'Mar',
-      //   sales: 61,
-      // },
-      // {
-      //   type: 'Apr',
-      //   sales: 145,
-      // },
-      // {
-      //   type: 'May',
-      //   sales: 48,
-      // },
-      // {
-      //   type: 'Jun',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'July',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Aug',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Sep',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Oct',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Nov',
-      //   sales: 38,
-      // },
-      // {
-      //   type: 'Dec',
-      //   sales: 38,
-      // },
+      {
+        type: 'Jan',
+        sales: 0,
+      },
+      {
+        type: 'Feb',
+        sales: 10,
+      },
+      {
+        type: 'Mar',
+        sales: 15,
+      },
+      {
+        type: 'Apr',
+        sales: 15,
+      },
+      {
+        type: 'May',
+        sales: 20,
+      },
+      {
+        type: 'Jun',
+        sales: 20,
+      },
+      {
+        type: 'July',
+        sales: 25,
+      },
+      {
+        type: 'Aug',
+        sales: 30,
+      },
+      {
+        type: 'Sep',
+        sales: 30,
+      },
+      {
+        type: 'Oct',
+        sales: 35,
+      },
+      {
+        type: 'Nov',
+        sales: 40,
+      },
+      {
+        type: 'Dec',
+        sales: 50,
+      },
     ];
     const config = {
-      data: monthlyData,
+      data: data,
       xField: 'type',
       yField: 'sales',
       color: ({type}) =>{
@@ -131,28 +133,28 @@ const Dashboard = () => {
             <h4 className="mb-0 sub-title">$100</h4>
           </div>
           <div className="d-flex flex-column align-items-end">
-            <h6> <BsArrowDownRight />32%</h6>
+            <h6> <BsArrowDownRight />22%</h6>
             <p className="mb-0 desc">Compared to Appril 2022</p>
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3">
           <div>
             <p className=" desc">Total</p>
-            <h4 className="mb-0 sub-title">$100</h4>
+            <h4 className="mb-0 sub-title">$150</h4>
           </div>
           <div className="d-flex flex-column align-items-end">
-            <h6 className='red'> <BsArrowDownRight />32%</h6>
-            <p className="mb-0 desc">Compared to Appril 2022</p>
+            <h6 className='green'> <BsArrowUpRight />32%</h6>
+            <p className="mb-0 desc">Compared to Appril 2023</p>
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3">
           <div>
             <p className=" desc">Total</p>
-            <h4 className="mb-0 sub-title">$100</h4>
+            <h4 className="mb-0 sub-title">$200</h4>
           </div>
           <div className="d-flex flex-column align-items-end">
-            <h6 className='green'> <BsArrowDownRight />32%</h6>
-            <p className="mb-0 desc">Compared to Appril 2022</p>
+            <h6 className='green'> <BsArrowUpRight />62%</h6>
+            <p className="mb-0 desc">Compared to Appril 2024</p>
           </div>
         </div>
       </div>
@@ -167,7 +169,7 @@ const Dashboard = () => {
         <div>
           <Table
                 columns={Columns}
-                dataSource={data}/>
+                dataSource={monthlyData}/>
         </div>
       </div>
     </div>
