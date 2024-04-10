@@ -1,2 +1,2 @@
-export const base_url = "http://localhost:5000/api/";
+export const base_url = "https://ecommerce-backend-taz5.onrender.com/api/";
 
